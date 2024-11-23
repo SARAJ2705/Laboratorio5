@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Club de Fans</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="izq">
+            <img src="logo.png" alt="Left Icon" width="11%" height="11%">
+            <h1>TYPE O NEGATIVE</h1>
+            <img class="imagen" src="logo.png" alt="Right Icon" width="11%" height="11%">
+        </div>
+    </header>
+    <br>
+
+    <div class="container">
+        <form id="myForm">
+            <label>Nombre</label>
+            <input type="text" name="Nombre" required="">
+            <label>Apellido</label>
+            <input type="text" name="Apellido" required="">
+            <label>Edad</label>
+            <input type="text" name="Edad" required="">
+            <label>Correo Electrónico</label>
+            <input type="email" name="Correo electrónico" required="">
+            <label>Número Celular</label>
+            <input type="tel" name="Celular" required="" minlength="10">
+            <label>Mensaje para la Banda</label>
+            <textarea id="Mensaje" rows="4"></textarea>
+            <input type="submit" name="" value="Enviar">
+        </form>
+    </div>  
+
+    <script>
+        document.getElementById('myForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.querySelector('[name="Nombre"]').value;
+            const surname = document.querySelector('[name="Apellido"]').value;
+            const age = document.querySelector('[name="Edad"]').value;
+            const email = document.querySelector('[name="Correo electrónico"]').value;
+            const phone = document.querySelector('[name="Celular"]').value;
+            const message = document.getElementById('Mensaje').value;
+
+            if (name === "") {
+                alert("El nombre es obligatorio.");
+                return;
+            }
+
+            if (surname === "") {
+                alert("El apellido es obligatorio.");
+                return;
+            }
+
+            if (isNaN(age) || age === "") {
+                alert("Por favor, ingresa una edad válida.");
+                return;
+            }
+
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (!email.match(emailPattern)) {
+                alert("Por favor, ingresa un correo electrónico válido.");
+                return;
+            }
+
+            if (phone.length < 10) {
+                alert("El número de teléfono debe tener al menos 10 caracteres.");
+                return;
+            }
+
+            if (message.trim() === "") {
+                alert("Por favor, ingresa un mensaje para la banda.");
+                return;
+            }
+        });
+    </script>
+</body>
+</html>
